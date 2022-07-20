@@ -1,5 +1,6 @@
 import 'package:digitalcrop/constants.dart';
 import 'package:digitalcrop/controller/user_controller.dart';
+import 'package:digitalcrop/views/home.dart';
 import 'package:digitalcrop/views/login.dart';
 import 'package:digitalcrop/views/signup.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,18 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             textTheme: GoogleFonts.outfitTextTheme(),
             primaryColor: kBackgroundColor,
+            appBarTheme: AppBarTheme(
+              centerTitle: true,
+              backgroundColor: kBackgroundColor,
+              elevation: 0,
+              titleTextStyle: GoogleFonts.sourceSansPro(
+                color: Colors.white,
+                fontSize: 35.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            )
           ),
-          home: SignUp(),
+          home: Home(),
         ),
       ),
     );
