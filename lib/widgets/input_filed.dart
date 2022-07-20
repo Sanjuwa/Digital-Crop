@@ -6,8 +6,9 @@ class InputFiled extends StatefulWidget {
   final String text;
   final bool isPassword;
   final IconData? icon;
+  final TextInputType? keyboard;
 
-  const InputFiled({super.key, required this.text, this.isPassword = false, this.icon});
+  const InputFiled({super.key, required this.text, this.isPassword = false, this.icon, this.keyboard});
 
   @override
   State<InputFiled> createState() => _InputFiledState();
@@ -28,6 +29,7 @@ class _InputFiledState extends State<InputFiled> {
       style: TextStyle(
         color: Colors.white,
       ),
+      keyboardType: widget.keyboard,
       obscureText: hideText,
       cursorColor: kGreenColor,
       decoration: InputDecoration(

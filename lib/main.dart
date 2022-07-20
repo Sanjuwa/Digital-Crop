@@ -1,6 +1,7 @@
 import 'package:digitalcrop/constants.dart';
 import 'package:digitalcrop/controller/user_controller.dart';
 import 'package:digitalcrop/views/login.dart';
+import 'package:digitalcrop/views/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
             textTheme: GoogleFonts.outfitTextTheme(),
             primaryColor: kBackgroundColor,
           ),
-          home: Login(),
+          home: SignUp(),
         ),
       ),
     );

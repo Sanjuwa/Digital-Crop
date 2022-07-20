@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Login extends StatelessWidget {
+class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +28,7 @@ class Login extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: 35.h, top: 70.h),
                 child: Text(
-                  'Login Details',
+                  'Signup Details',
                   style: GoogleFonts.sourceSansPro(
                     fontSize: 40.sp,
                     color: Colors.white,
@@ -39,9 +39,15 @@ class Login extends StatelessWidget {
 
               //text fields
               InputFiled(
+                text: 'Name',
+              ),
+              SizedBox(
+                height: 11.h,
+              ),
+              InputFiled(
                 text: 'Email',
-                icon: Icons.email_outlined,
                 keyboard: TextInputType.emailAddress,
+                icon: Icons.email_outlined,
               ),
               SizedBox(
                 height: 11.h,
@@ -50,39 +56,33 @@ class Login extends StatelessWidget {
                 text: 'Password',
                 isPassword: true,
               ),
-
-              //forgot password
-              Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: EdgeInsets.all(25.h),
-                  child: Text(
-                    'Forgot Password ?',
-                    style:
-                        TextStyle(color: kGreenColor, fontSize: 18.sp, fontWeight: FontWeight.w500),
-                  ),
-                ),
+              SizedBox(
+                height: 11.h,
+              ),
+              InputFiled(
+                text: 'Confirm Password',
+                isPassword: true,
               ),
               SizedBox(
-                height: 50.w,
+                height: 55.h,
               ),
 
               //login button
               SizedBox(
                 width: double.infinity,
                 child: Button(
-                  text: 'Login',
+                  text: 'Signup',
                   onPressed: () {},
                 ),
               ),
               SizedBox(
-                height: 80.h,
+                height: 50.h,
               ),
 
               //sign up
               RichText(
                 text: TextSpan(
-                    text: 'Don\'t an account?  ',
+                    text: 'Do you have an account?  ',
                     style: GoogleFonts.outfit(
                       fontSize: 16.sp,
                       color: Colors.white,
@@ -90,7 +90,7 @@ class Login extends StatelessWidget {
                     ),
                     children: <TextSpan>[
                       TextSpan(
-                        text: 'Sign Up',
+                        text: 'Login',
                         style: GoogleFonts.outfit(
                           decoration: TextDecoration.underline,
                           color: kGreenColor,
