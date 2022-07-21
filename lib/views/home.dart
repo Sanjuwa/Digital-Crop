@@ -1,20 +1,36 @@
 import 'package:digitalcrop/constants.dart';
+import 'package:digitalcrop/controller/user_controller.dart';
+import 'package:digitalcrop/views/login.dart';
 import 'package:digitalcrop/widgets/button.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var userController = Provider.of<UserController>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Home',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-          ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              if (await userController.signOut()) {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    CupertinoPageRoute(builder: (context) => Login()),
+                        (Route<dynamic> route) => false);
+              }
+            },
+            icon: Icon(Icons.logout),
+          ),
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 30.h),
@@ -30,7 +46,7 @@ class Home extends StatelessWidget {
                     radius: Radius.circular(20.r),
                     color: kBackgroundColor,
                     strokeWidth: 1.5,
-                    dashPattern: [6,10],
+                    dashPattern: [6, 10],
                     child: Column(
                       children: [
                         SizedBox(
@@ -38,13 +54,17 @@ class Home extends StatelessWidget {
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 25.h),
-                          child: Image.asset("assets/camera.png", scale: 7,opacity: AlwaysStoppedAnimation<double>(0.3),),
+                          child: Image.asset(
+                            "assets/camera.png",
+                            scale: 7,
+                            opacity: AlwaysStoppedAnimation<double>(0.3),
+                          ),
                         ),
                         SizedBox(
                           height: 10.h,
                         ),
                         Text(
-                            "Tap to take a photo",
+                          "Tap to take a photo",
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 18.sp,
@@ -88,7 +108,7 @@ class Home extends StatelessWidget {
                                 child: Align(
                                   alignment: Alignment.centerRight,
                                   child: Container(
-                                    padding: EdgeInsets.fromLTRB(10.w,5.h,0,5.h),
+                                    padding: EdgeInsets.fromLTRB(10.w, 5.h, 0, 5.h),
                                     decoration: ShapeDecoration(
                                       shape: RoundedRectangleBorder(
                                         side: BorderSide(width: 2, color: kGreenColor),
@@ -97,11 +117,15 @@ class Home extends StatelessWidget {
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        icon: Icon(Icons.keyboard_arrow_down_rounded,size: 20,color: kBackgroundColor,),
+                                        icon: Icon(
+                                          Icons.keyboard_arrow_down_rounded,
+                                          size: 20,
+                                          color: kBackgroundColor,
+                                        ),
                                         dropdownColor: Colors.white,
                                         isDense: true,
                                         value: "Vietnamese",
-                                        onChanged: (context){},
+                                        onChanged: (context) {},
                                         items: [
                                           DropdownMenuItem(
                                             value: "English",
@@ -141,10 +165,7 @@ class Home extends StatelessWidget {
                                 padding: EdgeInsets.only(left: 15.w, top: 15.h),
                                 child: Text(
                                   "1. Take Photo of pipe in field",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 22.sp
-                                  ),
+                                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22.sp),
                                 ),
                               ),
                               SizedBox(
@@ -155,11 +176,10 @@ class Home extends StatelessWidget {
                                 child: Text(
                                   "During dry-down, ensure orange band is visible in photo",
                                   style: TextStyle(
-                                    height: 1.1,
+                                      height: 1.1,
                                       fontWeight: FontWeight.w400,
                                       fontStyle: FontStyle.italic,
-                                      fontSize: 14.sp
-                                  ),
+                                      fontSize: 14.sp),
                                 ),
                               ),
                               SizedBox(
@@ -173,10 +193,7 @@ class Home extends StatelessWidget {
                                 padding: EdgeInsets.only(left: 15.w, top: 20.h),
                                 child: Text(
                                   "2. Click “upload” button below",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 22.sp
-                                  ),
+                                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22.sp),
                                 ),
                               ),
                             ],
@@ -193,8 +210,12 @@ class Home extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: SizedBox(
                       width: double.infinity,
-                      child: Button(text: "Upload", onPressed: (){}, color: kGreenColor, textColor: Colors.white,)
-                  ),
+                      child: Button(
+                        text: "Upload",
+                        onPressed: () {},
+                        color: kGreenColor,
+                        textColor: Colors.white,
+                      )),
                 ),
                 SizedBox(
                   height: 30.h,

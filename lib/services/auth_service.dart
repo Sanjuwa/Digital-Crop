@@ -78,7 +78,7 @@ class AuthService {
     return null;
   }
 
-  signOut() async {
+  Future<bool> signOut() async {
     try{
       await _auth.signOut();
       return true;

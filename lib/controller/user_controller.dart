@@ -35,4 +35,8 @@ class UserController {
     return await _authService.forgetPassword(email);
   }
 
+  Future<bool> signOut() async {
+    return await _authService.signOut();
+  }
+
 }
