@@ -6,9 +6,9 @@ class Button extends StatelessWidget {
   final String text;
   final Function onPressed;
   final Color ?color;
-  final Color ?textColour;
+  final Color ?textColor;
 
-  const Button({super.key, required this.text, required this.onPressed, this.color, this.textColour});
+  const Button({super.key, required this.text, required this.onPressed, this.color, this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class Button extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-            color: textColour ?? kBackgroundColor,
+            color: textColor ?? kBackgroundColor,
             fontSize: 25.sp,
             fontWeight: FontWeight.w600
         ),
