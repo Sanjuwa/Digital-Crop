@@ -1,4 +1,5 @@
 import 'package:digitalcrop/constants.dart';
+import 'package:digitalcrop/controller/image_controller.dart';
 import 'package:digitalcrop/controller/user_controller.dart';
 import 'package:digitalcrop/views/login.dart';
 import 'package:digitalcrop/widgets/button.dart';
@@ -12,6 +13,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var userController = Provider.of<UserController>(context);
+    var imageController = Provider.of<ImageController>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -25,7 +27,7 @@ class Home extends StatelessWidget {
                 Navigator.pushAndRemoveUntil(
                     context,
                     CupertinoPageRoute(builder: (context) => Login()),
-                        (Route<dynamic> route) => false);
+                    (Route<dynamic> route) => false);
               }
             },
             icon: Icon(Icons.logout),
@@ -41,46 +43,48 @@ class Home extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 5.w),
-                  child: DottedBorder(
-                    borderType: BorderType.RRect,
-                    radius: Radius.circular(20.r),
-                    color: kBackgroundColor,
-                    strokeWidth: 1.5,
-                    dashPattern: [6, 10],
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          width: double.infinity,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 25.h),
-                          child: Image.asset(
-                            "assets/camera.png",
-                            scale: 7,
-                            opacity: AlwaysStoppedAnimation<double>(0.3),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        Text(
-                          "Tap to take a photo",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18.sp,
+                  child: GestureDetector(
+                    onTap: () => imageController.pickImage(),
+                    child: imageController.image == null
+                        ? DottedBorder(
+                            borderType: BorderType.RRect,
+                            radius: Radius.circular(20.r),
                             color: kBackgroundColor,
+                            strokeWidth: 1.5,
+                            dashPattern: [6, 10],
+                            child: Column(
+                              children: [
+                                SizedBox(width: double.infinity),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 25.h),
+                                  child: Image.asset(
+                                    "assets/camera.png",
+                                    scale: 7,
+                                    opacity: AlwaysStoppedAnimation<double>(0.3),
+                                  ),
+                                ),
+                                SizedBox(height: 10.h),
+                                Text(
+                                  "Tap to take a photo",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 18.sp,
+                                    color: kBackgroundColor,
+                                  ),
+                                ),
+                                SizedBox(height: 15.h)
+                              ],
+                            ),
+                          )
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(20.r),
+                            child: Image.file(imageController.image!),
                           ),
-                        ),
-                        SizedBox(
-                          height: 15.h,
-                        )
-                      ],
-                    ),
                   ),
                 ),
-                SizedBox(
-                  height: 40.h,
-                ),
+                SizedBox(height: 40.h),
+
+                //instruction
                 Card(
                   color: Color(0xffFAFAFA),
                   shape: RoundedRectangleBorder(
@@ -203,23 +207,23 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 85.h,
-                ),
+                SizedBox(height: 85.h),
+
+                //upload button
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: SizedBox(
-                      width: double.infinity,
-                      child: Button(
-                        text: "Upload",
-                        onPressed: () {},
-                        color: kGreenColor,
-                        textColor: Colors.white,
-                      )),
+                    width: double.infinity,
+                    child: Button(
+                      text: "Upload",
+                      enabled: imageController.image != null,
+                      onPressed: () => imageController.uploadImage(context),
+                      color: kGreenColor,
+                      textColor: Colors.white,
+                    ),
+                  ),
                 ),
-                SizedBox(
-                  height: 30.h,
-                ),
+                SizedBox(height: 30.h),
               ],
             ),
           ),

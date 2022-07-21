@@ -1,4 +1,5 @@
 import 'package:digitalcrop/constants.dart';
+import 'package:digitalcrop/controller/image_controller.dart';
 import 'package:digitalcrop/controller/user_controller.dart';
 import 'package:digitalcrop/firebase_options.dart';
 import 'package:digitalcrop/wrapper.dart';
@@ -24,7 +25,10 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(428, 926),
       builder: (context, child) => MultiProvider(
-        providers: [Provider<UserController>(create: (_) => UserController())],
+        providers: [
+          Provider<UserController>(create: (_) => UserController()),
+          ChangeNotifierProvider<ImageController>(create: (_) => ImageController()),
+        ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
