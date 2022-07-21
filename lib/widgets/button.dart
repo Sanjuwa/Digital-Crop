@@ -5,20 +5,22 @@ import 'package:digitalcrop/constants.dart';
 class Button extends StatelessWidget {
   final String text;
   final Function onPressed;
+  final Color ?color;
+  final Color ?textColour;
 
-  const Button({super.key, required this.text, required this.onPressed});
+  const Button({super.key, required this.text, required this.onPressed, this.color, this.textColour});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-          primary: kLightGreenColor,
+          primary: color ?? kLightGreenColor,
           padding: EdgeInsets.all(15.h)
       ),
       child: Text(
         text,
         style: TextStyle(
-            color: kBackgroundColor,
+            color: textColour ?? kBackgroundColor,
             fontSize: 25.sp,
             fontWeight: FontWeight.w600
         ),
