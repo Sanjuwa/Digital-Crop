@@ -17,7 +17,7 @@ class ImageController extends ChangeNotifier {
 
   Future<void> pickImage() async {
     final ImagePicker picker = ImagePicker();
-    final XFile? photo = await picker.pickImage(source: ImageSource.camera);
+    final XFile? photo = await picker.pickImage(source: ImageSource.camera, maxWidth: 300);
     if (photo != null) {
       _pickedImage = File(photo.path);
     }
