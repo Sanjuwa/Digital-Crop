@@ -31,20 +31,20 @@ class _InputFiledState extends State<InputFiled> {
       ),
       keyboardType: widget.keyboard,
       obscureText: hideText,
-      cursorColor: kGreenColor,
+      cursorColor: kLightGreenColor,
       decoration: InputDecoration(
         hintText: widget.text,
         hintStyle: TextStyle(color: Colors.white),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5.r),
           borderSide: BorderSide(
-            color: kGreenColor,
+            color: kLightGreenColor,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5.r),
           borderSide: BorderSide(
-            color: kGreenColor,
+            color: kLightGreenColor,
             width: 2,
           ),
         ),

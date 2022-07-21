@@ -93,7 +93,7 @@ class SignUp extends StatelessWidget {
                         text: 'Login',
                         style: GoogleFonts.outfit(
                           decoration: TextDecoration.underline,
-                          color: kGreenColor,
+                          color: kLightGreenColor,
                           fontWeight: FontWeight.w600,
                         ),
                       )

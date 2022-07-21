@@ -59,7 +59,7 @@ class Login extends StatelessWidget {
                   child: Text(
                     'Forgot Password ?',
                     style:
-                        TextStyle(color: kGreenColor, fontSize: 18.sp, fontWeight: FontWeight.w500),
+                        TextStyle(color: kLightGreenColor, fontSize: 18.sp, fontWeight: FontWeight.w500),
                   ),
                 ),
               ),
@@ -93,7 +93,7 @@ class Login extends StatelessWidget {
                         text: 'Sign Up',
                         style: GoogleFonts.outfit(
                           decoration: TextDecoration.underline,
-                          color: kGreenColor,
+                          color: kLightGreenColor,
                           fontWeight: FontWeight.w600,
                         ),
                       )

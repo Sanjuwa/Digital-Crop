@@ -12,7 +12,7 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-          primary: kGreenColor,
+          primary: kLightGreenColor,
           padding: EdgeInsets.all(15.h)
       ),
       child: Text(
