@@ -8,7 +8,22 @@ class DatabaseService {
     await _firestore
         .collection('users')
         .doc(user.uid)
-        .set({'name': user.name, 'id': user.uid, 'email': user.email});
+        .set({'name': user.name, 'id': user.uid, 'email': user.email, 'lastImageDate': null, 'imageCountForLastDay': 0});
+  }
+
+  getLastImageInfo(String uid) async {
+    DocumentSnapshot doc = await _firestore.collection('users').doc(uid).get();
+    return {
+      'lastImageDate' : doc['lastImageDate'],
+      'imageCountForLastDay': doc['imageCountForLastDay']
+    };
+  }
+
+  updateLastImageInfo(DateTime date, int count, String uid) async {
+    await _firestore.collection('users').doc(uid).update({
+      'lastImageDate': date,
+      'imageCountForLastDay': count
+    });
   }
 
   // getUserDetails(User user) async {
