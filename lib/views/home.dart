@@ -193,7 +193,7 @@ class Home extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: SizedBox(
                       width: double.infinity,
-                      child: Button(text: "Uploa", onPressed: (){}, color: kGreenColor, textColor: Colors.white,)
+                      child: Button(text: "Upload", onPressed: (){}, color: kGreenColor, textColor: Colors.white,)
                   ),
                 ),
                 SizedBox(
