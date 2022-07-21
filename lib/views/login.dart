@@ -68,10 +68,29 @@ class Login extends StatelessWidget {
                 alignment: Alignment.topRight,
                 child: Padding(
                   padding: EdgeInsets.all(25.h),
-                  child: Text(
-                    'Forgot Password ?',
-                    style:
-                        TextStyle(color: kLightGreenColor, fontSize: 18.sp, fontWeight: FontWeight.w500),
+                  child: GestureDetector(
+                    onTap: () async {
+                      if (email.text.trim().isEmpty) {
+                        ToastBar(text: 'Please fill email!', color: Colors.red).show();
+                      } else {
+                        ToastBar(text: 'Please wait...', color: Colors.orange).show();
+
+                        bool success =
+                        await Provider.of<UserController>(context, listen: false)
+                            .forgetPassword(email.text.trim());
+                        if (success) {
+                          ToastBar(
+                              text: 'Password reset link sent to your email! Check your inbox or spam folders.',
+                              color: Colors.green)
+                              .show();
+                        }
+                      }
+                    },
+                    child: Text(
+                      'Forgot Password ?',
+                      style:
+                          TextStyle(color: kLightGreenColor, fontSize: 18.sp, fontWeight: FontWeight.w500),
+                    ),
                   ),
                 ),
               ),

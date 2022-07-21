@@ -110,7 +110,7 @@ class AuthService {
     }
   }
 
-  forgetPassword(String email) async {
+  Future<bool> forgetPassword(String email) async {
     try{
       await _auth.sendPasswordResetEmail(email: email);
       return true;
@@ -124,6 +124,8 @@ class AuthService {
         ToastBar(text: 'User not found!', color: Colors.red).show();
         return false;
       }
+
+      return false;
     }
     catch(e){
       ToastBar(text: 'Something went wrong!', color: Colors.red).show();

@@ -31,4 +31,8 @@ class UserController {
     return user != null;
   }
 
+  Future<bool> forgetPassword(String email) async {
+    return await _authService.forgetPassword(email);
+  }
+
 }
