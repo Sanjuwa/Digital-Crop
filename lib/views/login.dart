@@ -1,11 +1,17 @@
 import 'package:digitalcrop/constants.dart';
+import 'package:digitalcrop/views/signup.dart';
 import 'package:digitalcrop/widgets/button.dart';
 import 'package:digitalcrop/widgets/input_filed.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatelessWidget {
+
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,12 +48,14 @@ class Login extends StatelessWidget {
                 text: 'Email',
                 icon: Icons.email_outlined,
                 keyboard: TextInputType.emailAddress,
+                controller: email,
               ),
               SizedBox(
                 height: 11.h,
               ),
               InputFiled(
                 text: 'Password',
+                controller: password,
                 isPassword: true,
               ),
 
@@ -80,24 +88,27 @@ class Login extends StatelessWidget {
               ),
 
               //sign up
-              RichText(
-                text: TextSpan(
-                    text: 'Don\'t an account?  ',
-                    style: GoogleFonts.outfit(
-                      fontSize: 16.sp,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: 'Sign Up',
-                        style: GoogleFonts.outfit(
-                          decoration: TextDecoration.underline,
-                          color: kLightGreenColor,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      )
-                    ]),
+              GestureDetector(
+                onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (_) => SignUp())),
+                child: RichText(
+                  text: TextSpan(
+                      text: 'Don\'t an account?  ',
+                      style: GoogleFonts.outfit(
+                        fontSize: 16.sp,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'Sign Up',
+                          style: GoogleFonts.outfit(
+                            decoration: TextDecoration.underline,
+                            color: kLightGreenColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        )
+                      ]),
+                ),
               ),
             ],
           ),

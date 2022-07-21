@@ -7,8 +7,9 @@ class InputFiled extends StatefulWidget {
   final bool isPassword;
   final IconData? icon;
   final TextInputType? keyboard;
+  final TextEditingController controller;
 
-  const InputFiled({super.key, required this.text, this.isPassword = false, this.icon, this.keyboard});
+  const InputFiled({super.key, required this.text, this.isPassword = false, this.icon, this.keyboard, required this.controller});
 
   @override
   State<InputFiled> createState() => _InputFiledState();
@@ -26,6 +27,7 @@ class _InputFiledState extends State<InputFiled> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: widget.controller,
       style: TextStyle(
         color: Colors.white,
       ),
