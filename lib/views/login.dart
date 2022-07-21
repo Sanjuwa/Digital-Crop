@@ -1,11 +1,15 @@
 import 'package:digitalcrop/constants.dart';
+import 'package:digitalcrop/controller/user_controller.dart';
+import 'package:digitalcrop/views/home.dart';
 import 'package:digitalcrop/views/signup.dart';
 import 'package:digitalcrop/widgets/button.dart';
 import 'package:digitalcrop/widgets/input_filed.dart';
+import 'package:digitalcrop/widgets/toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatelessWidget {
 
@@ -80,7 +84,24 @@ class Login extends StatelessWidget {
                 width: double.infinity,
                 child: Button(
                   text: 'Login',
-                  onPressed: () {},
+                  onPressed: () async {
+                    if (email.text.trim().isEmpty || password.text.trim().isEmpty) {
+                      ToastBar(text: 'Please fill all the fields!', color: Colors.red)
+                          .show();
+                    } else {
+                      ToastBar(text: 'Please wait...', color: Colors.orange).show();
+
+                      bool isUserLoggedIn =
+                          await Provider.of<UserController>(context, listen: false)
+                          .signIn(email.text.trim(), password.text.trim());
+                      if (isUserLoggedIn) {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            CupertinoPageRoute(builder: (context) => Home()),
+                                (Route<dynamic> route) => false);
+                      }
+                    }
+                  },
                 ),
               ),
               SizedBox(
@@ -92,7 +113,7 @@ class Login extends StatelessWidget {
                 onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (_) => SignUp())),
                 child: RichText(
                   text: TextSpan(
-                      text: 'Don\'t an account?  ',
+                      text: 'Don\'t have an account?  ',
                       style: GoogleFonts.outfit(
                         fontSize: 16.sp,
                         color: Colors.white,

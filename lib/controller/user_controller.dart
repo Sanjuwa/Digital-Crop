@@ -4,7 +4,7 @@ import 'package:digitalcrop/services/database_service.dart';
 import 'package:digitalcrop/widgets/toast.dart';
 import 'package:flutter/material.dart';
 
-class UserController{
+class UserController {
 
   final AuthService _authService = AuthService();
   final DatabaseService _databaseService = DatabaseService();
@@ -20,11 +20,15 @@ class UserController{
       user.name = name;
       await _databaseService.createUser(user);
       ToastBar(text: 'User successfully registered!', color: Colors.green).show();
-      await getCurrentUser();
       return true;
     }
 
     return false;
+  }
+
+  Future<bool> signIn(String email, String password) async {
+    User? user = await _authService.signIn(email, password);
+    return user != null;
   }
 
 }

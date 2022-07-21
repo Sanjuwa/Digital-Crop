@@ -44,6 +44,8 @@ class AuthService {
         ToastBar(text: 'No user found for that email.', color: Colors.red).show();
       } else if (e.code == 'wrong-password') {
         ToastBar(text: 'Wrong password provided for that user.', color: Colors.red).show();
+      } else if (e.code == 'invalid-email') {
+        ToastBar(text: 'Email is invalid.', color: Colors.red).show();
       }
     }
     catch (e){
