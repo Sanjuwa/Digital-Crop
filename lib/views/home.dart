@@ -128,38 +128,22 @@ class Home extends StatelessWidget {
                                         ),
                                         dropdownColor: Colors.white,
                                         isDense: true,
-                                        value: "Vietnamese",
-                                        onChanged: (context) {},
-                                        items: [
-                                          DropdownMenuItem(
-                                            value: "English",
-                                            child: Padding(
-                                              padding: EdgeInsets.only(right: 5.w),
-                                              child: Text(
-                                                "English",
-                                                style: TextStyle(
-                                                  fontSize: 14.sp,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: kBackgroundColor,
-                                                ),
+                                        value: imageController.language,
+                                        items: instructions.keys.map((key) => DropdownMenuItem(
+                                          value: key,
+                                          child: Padding(
+                                            padding: EdgeInsets.only(right: 5.w),
+                                            child: Text(
+                                              key,
+                                              style: TextStyle(
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.w600,
+                                                color: kBackgroundColor,
                                               ),
                                             ),
                                           ),
-                                          DropdownMenuItem(
-                                            value: "Vietnamese",
-                                            child: Padding(
-                                              padding: EdgeInsets.only(right: 5.w),
-                                              child: Text(
-                                                "Vietnamese",
-                                                style: TextStyle(
-                                                  fontSize: 14.sp,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: kBackgroundColor,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                                        ),).toList(),
+                                        onChanged: (value) => imageController.language = value as String,
                                       ),
                                     ),
                                   ),
@@ -168,7 +152,7 @@ class Home extends StatelessWidget {
                               Padding(
                                 padding: EdgeInsets.only(left: 15.w, top: 15.h),
                                 child: Text(
-                                  "1. Take Photo of pipe in field",
+                                  "1. ${instructions[imageController.language]!['1']}",
                                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22.sp),
                                 ),
                               ),
@@ -178,7 +162,7 @@ class Home extends StatelessWidget {
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 35.w),
                                 child: Text(
-                                  "During dry-down, ensure orange band is visible in photo",
+                                  instructions[imageController.language]!['1-1'].toString(),
                                   style: TextStyle(
                                       height: 1.1,
                                       fontWeight: FontWeight.w400,
@@ -196,7 +180,7 @@ class Home extends StatelessWidget {
                               Padding(
                                 padding: EdgeInsets.only(left: 15.w, top: 20.h),
                                 child: Text(
-                                  "2. Click “upload” button below",
+                                  "2. ${instructions[imageController.language]!['2']}",
                                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22.sp),
                                 ),
                               ),

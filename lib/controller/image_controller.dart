@@ -12,8 +12,15 @@ class ImageController extends ChangeNotifier {
   final StorageService _storageService = StorageService();
 
   File? _pickedImage;
+  String _language = instructions.keys.first;
 
   File? get image => _pickedImage;
+  String get language => _language;
+
+  set language(String lang){
+    _language = lang;
+    notifyListeners();
+  }
 
   Future<void> pickImage() async {
     final ImagePicker picker = ImagePicker();
