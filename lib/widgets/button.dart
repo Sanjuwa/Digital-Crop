@@ -16,13 +16,13 @@ class Button extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           primary: enabled ? color ?? kLightGreenColor : Color(0xffE5E5E5),
-          padding: EdgeInsets.all(15.h),
+          padding: EdgeInsets.all(14.h),
       ),
       child: Text(
         text,
         style: TextStyle(
             color: enabled ? textColor ?? kBackgroundColor : Color(0xff9E9E9E),
-            fontSize: 25.sp,
+            fontSize: 24.sp,
             fontWeight: FontWeight.w600
         ),
       ),

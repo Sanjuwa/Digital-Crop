@@ -33,7 +33,7 @@ class SignUp extends StatelessWidget {
               //logo
               Center(
                 child: SizedBox(
-                  width: 270.h,
+                  width: 300.h,
                   child: Image.asset('assets/logo.png'),
                 ),
               ),
@@ -44,7 +44,7 @@ class SignUp extends StatelessWidget {
                 child: Text(
                   'Signup Details',
                   style: GoogleFonts.sourceSansPro(
-                    fontSize: 35.sp,
+                    fontSize: 30.sp,
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
                   ),
@@ -129,7 +129,7 @@ class SignUp extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 45.h,
+                height: 60.h,
               ),
 
               //log in

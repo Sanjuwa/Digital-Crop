@@ -35,8 +35,9 @@ class _InputFiledState extends State<InputFiled> {
       obscureText: hideText,
       cursorColor: kLightGreenColor,
       decoration: InputDecoration(
+        isDense: true,
         hintText: widget.text,
-        hintStyle: TextStyle(color: Colors.white),
+        hintStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 18.sp),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5.r),
           borderSide: BorderSide(
@@ -59,6 +60,7 @@ class _InputFiledState extends State<InputFiled> {
                     : Icons.visibility
                 : widget.icon,
             color: Colors.white,
+            size: 22,
           ),
           onPressed: () {
             if (widget.isPassword) {
