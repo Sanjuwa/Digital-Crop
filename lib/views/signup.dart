@@ -31,12 +31,12 @@ class SignUp extends StatelessWidget {
               SizedBox(height: ScreenUtil().statusBarHeight),
 
               //logo
-              Center(
-                child: SizedBox(
-                  width: 270.h,
-                  child: Image.asset('assets/logo.png'),
-                ),
-              ),
+              // Center(
+              //   child: SizedBox(
+              //     width: 270.h,
+              //     child: Image.asset('assets/logo.png'),
+              //   ),
+              // ),
 
               //heading
               Padding(
