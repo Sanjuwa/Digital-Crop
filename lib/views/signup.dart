@@ -22,7 +22,7 @@ class SignUp extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 45.h),
+        padding: EdgeInsets.fromLTRB(40.w, 30.h, 40.w, 0.h),
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Column(
@@ -32,16 +32,19 @@ class SignUp extends StatelessWidget {
 
               //logo
               Center(
-                child: Image.asset('assets/logo.png'),
+                child: SizedBox(
+                  width: 270.h,
+                  child: Image.asset('assets/logo.png'),
+                ),
               ),
 
               //heading
               Padding(
-                padding: EdgeInsets.only(bottom: 35.h, top: 70.h),
+                padding: EdgeInsets.only(bottom: 30.h, top: 50.h),
                 child: Text(
                   'Signup Details',
                   style: GoogleFonts.sourceSansPro(
-                    fontSize: 40.sp,
+                    fontSize: 35.sp,
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
                   ),
@@ -126,7 +129,7 @@ class SignUp extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 50.h,
+                height: 45.h,
               ),
 
               //log in
@@ -136,7 +139,7 @@ class SignUp extends StatelessWidget {
                   text: TextSpan(
                       text: 'Do you have an account?  ',
                       style: GoogleFonts.outfit(
-                        fontSize: 16.sp,
+                        fontSize: 18.sp,
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
                       ),
@@ -151,6 +154,9 @@ class SignUp extends StatelessWidget {
                         )
                       ]),
                 ),
+              ),
+              SizedBox(
+                height: 25.h,
               ),
             ],
           ),

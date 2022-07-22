@@ -55,8 +55,8 @@ class _InputFiledState extends State<InputFiled> {
           icon: Icon(
             widget.isPassword
                 ? hideText
-                    ? Icons.visibility
-                    : Icons.visibility_off
+                    ? Icons.visibility_off
+                    : Icons.visibility
                 : widget.icon,
             color: Colors.white,
           ),

@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(428, 926),
+      minTextAdapt: true,
       builder: (context, child) => MultiProvider(
         providers: [
           Provider<UserController>(create: (_) => UserController()),
