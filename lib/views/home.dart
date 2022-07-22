@@ -150,17 +150,28 @@ class Home extends StatelessWidget {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 15.w, top: 15.h),
-                                child: Text(
-                                  "1. ${instructions[imageController.language]!['1']}",
-                                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22.sp),
+                                padding: EdgeInsets.only(left: 15.w, top: 15.h, right: 25.w),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "1. ",
+                                      style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22.sp),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        "${instructions[imageController.language]!['1']}",
+                                        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22.sp),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               SizedBox(
                                 height: 2.h,
                               ),
                               Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 35.w),
+                                padding: EdgeInsets.only(left: 35.w, right: 25.w),
                                 child: Text(
                                   instructions[imageController.language]!['1-1'].toString(),
                                   style: TextStyle(
@@ -178,10 +189,21 @@ class Home extends StatelessWidget {
                                 child: Image.asset("assets/instruction_img.png"),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 15.w, top: 20.h),
-                                child: Text(
-                                  "2. ${instructions[imageController.language]!['2']}",
-                                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22.sp),
+                                padding: EdgeInsets.only(left: 15.w, top: 20.h, right: 25.w),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        "2. ",
+                                      style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22.sp),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        "${instructions[imageController.language]!['2']}",
+                                        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22.sp),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
