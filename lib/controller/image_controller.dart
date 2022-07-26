@@ -29,7 +29,8 @@ class ImageController extends ChangeNotifier {
 
   Future<void> pickImage() async {
     final ImagePicker picker = ImagePicker();
-    final XFile? photo = await picker.pickImage(source: ImageSource.camera, maxWidth: 300);
+    final XFile? photo =
+        await picker.pickImage(source: ImageSource.camera, maxWidth: 300);
     if (photo != null) {
       _pickedImage = File(photo.path);
     }
@@ -37,8 +38,8 @@ class ImageController extends ChangeNotifier {
   }
 
   Future<void> uploadImage(BuildContext context) async {
-    SimpleFontelicoProgressDialog pd =
-        SimpleFontelicoProgressDialog(context: context, barrierDimisable: false);
+    SimpleFontelicoProgressDialog pd = SimpleFontelicoProgressDialog(
+        context: context, barrierDimisable: false);
     pd.show(
       message: "Uploading image...",
       indicatorColor: kGreenColor,
@@ -55,7 +56,8 @@ class ImageController extends ChangeNotifier {
       String? url = await _storageService.uploadImage(_pickedImage!, imageName);
       if (url != null) {
         _pickedImage = null;
-        await DatabaseService().updateLastImageInfo(DateTime.now(), int.parse(imageName.split('_').last), user.uid);
+        await DatabaseService().updateLastImageInfo(
+            DateTime.now(), int.parse(imageName.split('_').last), user.uid);
         pd.hide();
         ToastBar(text: 'Image uploaded!', color: Colors.green).show();
         notifyListeners();
@@ -70,24 +72,24 @@ class ImageController extends ChangeNotifier {
   }
 
   Future<String> _generateImageName(String uid) async {
-      String date = DateFormat('yyyy_MM_dd').format(DateTime.now());
+    String date = DateFormat('yyyy_MM_dd').format(DateTime.now());
 
-      Map lastImageData = await DatabaseService().getLastImageInfo(uid);
-      DateTime lastDate = lastImageData['lastImageDate'] == null
-          ? _simplifyDate(DateTime.now())
-          : _simplifyDate(lastImageData['lastImageDate'].toDate());
-      int lastCount = lastImageData['imageCountForLastDay'];
+    Map lastImageData = await DatabaseService().getLastImageInfo(uid);
+    DateTime lastDate = lastImageData['lastImageDate'] == null
+        ? _simplifyDate(DateTime.now())
+        : _simplifyDate(lastImageData['lastImageDate'].toDate());
+    int lastCount = lastImageData['imageCountForLastDay'];
 
-      int finalCount = 0;
+    int finalCount = 0;
 
-      if (DateTime.now().difference(lastDate).inDays > 0) {
-        finalCount = 1;
-      } else {
-        finalCount = lastCount + 1;
-      }
+    if (DateTime.now().difference(lastDate).inDays > 0) {
+      finalCount = 1;
+    } else {
+      finalCount = lastCount + 1;
+    }
 
-      String imageName = "${uid}_${date}_$finalCount";
-      return imageName;
+    String imageName = "${uid}_${date}_$finalCount";
+    return imageName;
   }
 
   DateTime _simplifyDate(DateTime dateTime) {
