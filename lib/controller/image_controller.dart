@@ -32,7 +32,8 @@ class ImageController extends ChangeNotifier {
 
   Future<void> pickImage() async {
     final ImagePicker picker = ImagePicker();
-    final XFile? photo = await picker.pickImage(source: ImageSource.camera, maxWidth: 300);
+    final XFile? photo =
+        await picker.pickImage(source: ImageSource.camera, maxWidth: 300);
     if (photo != null) {
       _pickedImage = File(photo.path);
     }
@@ -61,8 +62,10 @@ class ImageController extends ChangeNotifier {
         final attributes = await exif.getAttributes();
 
         LatLongConverter converter = LatLongConverter();
-        List convertedLatitude = converter.getDegreeFromDecimal(position.latitude);
-        List convertedLongitude = converter.getDegreeFromDecimal(position.longitude);
+        List convertedLatitude =
+            converter.getDegreeFromDecimal(position.latitude);
+        List convertedLongitude =
+            converter.getDegreeFromDecimal(position.longitude);
 
         attributes!['GPSLatitude'] = _decimalToRational(convertedLatitude);
         attributes['GPSLongitude'] = _decimalToRational(convertedLongitude);
@@ -72,7 +75,8 @@ class ImageController extends ChangeNotifier {
         await exif.writeAttributes(attributes);
 
         String imageName = await _generateImageName(user.uid);
-        String? url = await _storageService.uploadImage(_pickedImage!, imageName);
+        String? url =
+            await _storageService.uploadImage(_pickedImage!, imageName);
         if (url != null) {
           _pickedImage = null;
           await DatabaseService().updateLastImageInfo(
@@ -144,7 +148,7 @@ class ImageController extends ChangeNotifier {
     return await Geolocator.getCurrentPosition();
   }
 
-  String _decimalToRational(List dmsList){
+  String _decimalToRational(List dmsList) {
     return "${dmsList[0].abs()}/1,${dmsList[1]}/1,${(double.parse(dmsList[2].toStringAsFixed(3)) * 1000).toInt()}/1000";
   }
 }
