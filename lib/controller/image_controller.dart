@@ -42,7 +42,7 @@ class ImageController extends ChangeNotifier {
 
   Future<void> uploadImage(BuildContext context) async {
     SimpleFontelicoProgressDialog pd =
-        SimpleFontelicoProgressDialog(context: context, barrierDimisable: true);
+        SimpleFontelicoProgressDialog(context: context, barrierDimisable: false);
     pd.show(
       message: "Uploading image...",
       indicatorColor: kGreenColor,
@@ -63,9 +63,9 @@ class ImageController extends ChangeNotifier {
 
         LatLongConverter converter = LatLongConverter();
         List convertedLatitude =
-            converter.getDegreeFromDecimal(position.latitude);
+            converter.getDegreeFromDecimal(double.parse(position.latitude.toStringAsFixed(6)));
         List convertedLongitude =
-            converter.getDegreeFromDecimal(position.longitude);
+            converter.getDegreeFromDecimal(double.parse(position.longitude.toStringAsFixed(6)));
 
         attributes!['GPSLatitude'] = _decimalToRational(convertedLatitude);
         attributes['GPSLongitude'] = _decimalToRational(convertedLongitude);
