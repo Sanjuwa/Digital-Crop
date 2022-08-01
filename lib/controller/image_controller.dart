@@ -33,7 +33,7 @@ class ImageController extends ChangeNotifier {
   Future<void> pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? photo =
-        await picker.pickImage(source: ImageSource.camera, maxWidth: 300);
+        await picker.pickImage(source: ImageSource.gallery, maxWidth: 300);
     if (photo != null) {
       _pickedImage = File(photo.path);
     }
@@ -41,8 +41,8 @@ class ImageController extends ChangeNotifier {
   }
 
   Future<void> uploadImage(BuildContext context) async {
-    SimpleFontelicoProgressDialog pd =
-        SimpleFontelicoProgressDialog(context: context, barrierDimisable: false);
+    SimpleFontelicoProgressDialog pd = SimpleFontelicoProgressDialog(
+        context: context, barrierDimisable: false);
     pd.show(
       message: "Uploading image...",
       indicatorColor: kGreenColor,
@@ -62,13 +62,17 @@ class ImageController extends ChangeNotifier {
         final attributes = await exif.getAttributes();
 
         LatLongConverter converter = LatLongConverter();
-        List convertedLatitude =
-            converter.getDegreeFromDecimal(double.parse(position.latitude.toStringAsFixed(6)));
-        List convertedLongitude =
-            converter.getDegreeFromDecimal(double.parse(position.longitude.toStringAsFixed(6)));
+        List convertedLatitude = converter.getDegreeFromDecimal(
+            double.parse(position.latitude.toStringAsFixed(6)));
+        List convertedLongitude = converter.getDegreeFromDecimal(
+            double.parse(position.longitude.toStringAsFixed(6)));
 
-        attributes!['GPSLatitude'] = _decimalToRational(convertedLatitude);
-        attributes['GPSLongitude'] = _decimalToRational(convertedLongitude);
+        attributes!['GPSLatitude'] = Platform.isAndroid
+            ? _decimalToRational(convertedLatitude)
+            : position.latitude.abs();
+        attributes['GPSLongitude'] = Platform.isAndroid
+            ? _decimalToRational(convertedLongitude)
+            : position.longitude.abs();
         attributes['GPSLatitudeRef'] = position.latitude > 0 ? "N" : "S";
         attributes['GPSLongitudeRef'] = position.longitude > 0 ? "E" : "W";
 
